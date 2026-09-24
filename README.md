@@ -2,6 +2,11 @@
 
 A static, single-page engineering record for the University of Waterloo MTE 481 capstone. It uses plain HTML, CSS, and JavaScript. There is no build step, database, account, or server-side code.
 
+**Live site:** https://ur8.github.io/mte481-design-log/  
+**GitHub repository:** https://github.com/ur8/mte481-design-log
+
+This Desktop folder is connected to the repository. After editing, review the site locally, then commit and push your changes from VS Code's Source Control panel. GitHub Pages republishes the `main` branch automatically.
+
 **Before sharing with instructors:** all six entries, the team roles, milestone dates, and the two diagrams are **illustrative examples**. Replace them with actual, verified work. Do not leave sample progress presented as team progress.
 
 ## Files

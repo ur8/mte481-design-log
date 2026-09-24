@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10243a">
+  <meta name="description" content="MTE 481 engineering capstone design log: project status, weekly progress, individual contributions, decisions, milestones, and artifacts.">
+  <title>Design Log | MTE 481 Capstone</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="#overview" aria-label="MTE 481 Design Log, overview">
+        <span class="brand-mark" aria-hidden="true">M<span>·</span>481</span>
+        <span class="brand-copy"><strong id="header-project-name">Portable Automotive HUD</strong><small>DESIGN LOG / FALL 2026</small></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#design-log">Design Log</a>
+        <a href="#team">Team</a>
+        <a href="#decisions">Decisions</a>
+        <a href="#milestones">Milestones</a>
+        <a href="#documents">Documents</a>
+      </nav>
+    </div>
+  </header>
+
+  <noscript><p class="noscript-banner">JavaScript is needed to display the design entries. Please enable it to view the full record.</p></noscript>
+
+  <main id="main">
+    <section class="overview section container" id="overview" aria-labelledby="overview-title">
+      <div class="eyebrow-row"><span class="eyebrow">UNIVERSITY OF WATERLOO <span class="slash">/</span> MTE 481</span><span class="term-badge">FALL 2026 DESIGN RECORD</span></div>
+      <div class="overview-heading">
+        <div>
+          <h1 id="overview-title">Portable Automotive<br><em>Heads-Up Display</em></h1>
+          <p class="lead" id="project-description"></p>
+          <div class="overview-meta"><span class="meta-label">PROJECT TEAM</span><span id="overview-team"></span></div>
+        </div>
+        <div class="status-card" aria-labelledby="status-card-title">
+          <div class="card-topline"><span class="section-kicker" id="status-card-title">CURRENT STATUS</span><span class="status-indicator"><span aria-hidden="true"></span> In progress</span></div>
+          <div class="status-phase"><span class="muted-label">Current phase</span><strong id="current-phase"></strong></div>
+          <div class="status-rule"></div>
+          <dl class="status-list">
+            <div><dt>Last log</dt><dd id="last-updated"></dd></div>
+            <div><dt>Current focus</dt><dd id="current-focus"></dd></div>
+            <div><dt>Next milestone</dt><dd id="next-milestone"></dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="sample-notice" role="note"><span class="notice-symbol" aria-hidden="true">i</span><p><strong>Sample design record.</strong> Entries, dates, decisions, team roles, and milestones below demonstrate the format. Replace them with verified team work before sharing this site with instructors.</p></div>
+      <div class="overview-strip" aria-label="Project snapshot">
+        <div class="snapshot-item"><span class="snapshot-icon" aria-hidden="true">01</span><div><span class="snapshot-label">DOCUMENTED ENTRIES</span><strong id="entry-count">—</strong></div></div>
+        <div class="snapshot-item"><span class="snapshot-icon" aria-hidden="true">02</span><div><span class="snapshot-label">MOST RECENT</span><a id="recent-entry" href="#design-log">—</a></div></div>
+        <div class="snapshot-item"><span class="snapshot-icon" aria-hidden="true">03</span><div><span class="snapshot-label">LATEST DECISION</span><a id="latest-decision" href="#decisions">—</a></div></div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="design-log" aria-labelledby="log-title">
+      <div class="container">
+        <div class="section-heading"><div><span class="section-kicker">01 / THE RECORD</span><h2 id="log-title">Design log</h2><p>Dated work sessions, specific progress, individual ownership, and the reasoning behind each change.</p></div><div class="heading-aside"><strong id="log-total">—</strong><span>entries across <span id="week-total">—</span> weeks</span></div></div>
+        <div class="log-layout">
+          <aside class="log-sidebar" aria-label="Log navigation"><div class="sidebar-inner"><span class="sidebar-title">JUMP TO WEEK</span><nav id="week-nav" aria-label="Weeks"></nav><div class="sidebar-note"><span class="sidebar-note-icon" aria-hidden="true">↗</span><p>Each entry shows who did what, what changed, and the next action.</p></div></div></aside>
+          <div class="log-main">
+            <div class="filter-panel" aria-label="Filter design log">
+              <div class="filter-topline"><label for="log-search">Find work in the record</label><span id="filter-result-count" aria-live="polite"></span></div>
+              <div class="search-row"><div class="search-field"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><input type="search" id="log-search" placeholder="Search work, decisions, challenges…" autocomplete="off"></div><select id="member-filter" aria-label="Filter by team member"><option value="">All team members</option></select></div>
+              <div class="filter-chips" id="category-filters" role="group" aria-label="Filter by category"></div>
+              <div class="filter-footer"><button id="recent-filter" class="text-button" type="button" aria-pressed="false">Show latest 2 weeks</button><button id="clear-filters" class="text-button subtle" type="button">Clear filters</button></div>
+            </div>
+            <div id="log-list"></div>
+            <div class="empty-state" id="empty-state" hidden><strong>No entries match these filters.</strong><p>Try another category, member, or search term.</p><button class="button-secondary" id="empty-reset" type="button">Show all entries</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="team" aria-labelledby="team-title"><div class="section-heading"><div><span class="section-kicker">02 / ACCOUNTABILITY</span><h2 id="team-title">Team & responsibilities</h2><p>Primary areas of responsibility and a direct route to each member’s documented work.</p></div></div><div class="team-grid" id="team-grid"></div></section>
+
+    <section class="section section-tinted" id="decisions" aria-labelledby="decisions-title"><div class="container"><div class="section-heading"><div><span class="section-kicker">03 / DESIGN RATIONALE</span><h2 id="decisions-title">Engineering decisions</h2><p>A compact index of choices, alternatives, and the related detailed record.</p></div></div><div class="decision-table-wrap"><table class="decision-table"><thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Alternatives</th><th scope="col">Rationale</th><th scope="col">Related log</th></tr></thead><tbody id="decision-rows"></tbody></table></div></div></section>
+
+    <section class="section container" id="milestones" aria-labelledby="milestones-title"><div class="section-heading"><div><span class="section-kicker">04 / DELIVERY PATH</span><h2 id="milestones-title">Milestones</h2><p>Progress from problem definition through prototype validation and final demonstration.</p></div></div><ol class="milestone-list" id="milestone-list"></ol></section>
+
+    <section class="section section-tinted documents-section" id="documents" aria-labelledby="documents-title"><div class="container"><div class="section-heading"><div><span class="section-kicker">05 / SOURCE MATERIAL</span><h2 id="documents-title">Documents & artifacts</h2><p>Key files and external resources should be linked here as they become available.</p></div></div><div class="document-grid" id="document-grid"></div></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><div><strong>MTE 481 <span class="footer-divider">/</span> DESIGN LOG</strong><p>University of Waterloo · Fall 2026</p></div><a href="#overview">Back to top ↑</a></div></footer>
+
+  <dialog id="image-dialog" class="image-dialog" aria-label="Expanded evidence image"><button class="dialog-close" id="dialog-close" type="button" aria-label="Close image">×</button><img id="dialog-image" alt=""><p id="dialog-caption"></p></dialog>
+</body>
+</html>

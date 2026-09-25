@@ -371,6 +371,130 @@ function clearFilters() {
   renderLogList();
 }
 
+// The editor prepares a log for this static site. Browser drafts never enter designLogs.
+const draftStorageKey = "mte481-design-log-draft-v1";
+const editorTags = ["Meeting", "Research", "Mechanical", "Electrical", "Software", "Machine Learning", "Testing", "Integration", "Design Decision", "Prototype"];
+const entryForm = document.getElementById("entry-form");
+let editorContributionDrafts = {};
+const entryField = name => entryForm.elements.namedItem(name);
+const lines = value => String(value || "").split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+const nextLogId = () => Math.max(0, ...designLogs.map(log => Number(log.id) || 0)) + 1;
+
+function addStepRow(task = "", owner = "") {
+  const options = teamMembers.map(member => `<option value="${escapeHtml(member.name)}"${member.name === owner ? " selected" : ""}>${escapeHtml(member.name)}</option>`).join("");
+  document.getElementById("editor-next-steps").insertAdjacentHTML("beforeend", `<div class="editor-row step-row"><label>Action <input class="step-task" type="text" value="${escapeHtml(task)}" placeholder="e.g. Compare two candidate displays"></label><label>Owner <select class="step-owner"><option value="">Unassigned</option>${options}</select></label><button class="row-remove" type="button" data-remove-row aria-label="Remove action">×</button></div>`);
+}
+
+function addEvidenceRow(item = {}) {
+  document.getElementById("editor-evidence").insertAdjacentHTML("beforeend", `<div class="editor-row evidence-row"><label>Image path <input class="evidence-src" type="text" value="${escapeHtml(item.src || "")}" placeholder="assets/prototype.jpg"></label><label>Alt text <input class="evidence-alt" type="text" value="${escapeHtml(item.alt || "")}" placeholder="Describe the image"></label><label>Caption <input class="evidence-caption" type="text" value="${escapeHtml(item.caption || "")}" placeholder="Figure 1 · What this shows"></label><button class="row-remove" type="button" data-remove-row aria-label="Remove image">×</button></div>`);
+}
+
+function renderEditorContributions(previous = {}) {
+  const container = document.getElementById("editor-contributions");
+  container.querySelectorAll("textarea[data-member]").forEach(field => { editorContributionDrafts[field.dataset.member] = field.value; });
+  editorContributionDrafts = { ...editorContributionDrafts, ...previous };
+  const selected = [...document.querySelectorAll('#editor-member-options input:checked')].map(input => input.value);
+  container.innerHTML = selected.length ? selected.map(member => `<label class="contribution-input"><strong>${escapeHtml(member)}</strong><span>Specific work by this member <span class="required">*</span></span><textarea rows="3" data-member="${escapeHtml(member)}" placeholder="One specific contribution per line">${escapeHtml(editorContributionDrafts[member] || "")}</textarea></label>`).join("") : `<p class="editor-hint">Select the members present above to add their individual contributions.</p>`;
+}
+
+function editorData() {
+  const contributions = {};
+  document.querySelectorAll("#editor-contributions textarea[data-member]").forEach(field => { contributions[field.dataset.member] = field.value; });
+  return {
+    date: entryField("date").value, title: entryField("title").value.trim(), type: entryField("type").value.trim(),
+    tags: [...document.querySelectorAll('#editor-tag-options input:checked')].map(input => input.value),
+    membersPresent: [...document.querySelectorAll('#editor-member-options input:checked')].map(input => input.value),
+    objective: entryField("objective").value.trim(), workCompleted: entryField("workCompleted").value.trim(),
+    contributions, challenges: entryField("challenges").value.trim(), outcome: entryField("outcome").value.trim(),
+    nextSteps: [...document.querySelectorAll(".step-row")].map(row => ({ task: row.querySelector(".step-task").value.trim(), owner: row.querySelector(".step-owner").value })),
+    decision: entryField("decision").value.trim(), alternatives: entryField("alternatives").value,
+    rationale: entryField("rationale").value.trim(), tradeoffs: entryField("tradeoffs").value.trim(), decisionOutcome: entryField("decisionOutcome").value.trim(),
+    evidence: [...document.querySelectorAll(".evidence-row")].map(row => ({ src: row.querySelector(".evidence-src").value.trim(), alt: row.querySelector(".evidence-alt").value.trim(), caption: row.querySelector(".evidence-caption").value.trim() })),
+  };
+}
+
+function showEditorMessage(message, isError = false) {
+  const target = document.getElementById("editor-messages");
+  target.classList.toggle("error", isError);
+  target.textContent = message;
+}
+
+function validateEditorData(data) {
+  const errors = [];
+  if (!isValidDate(data.date)) errors.push("Choose a valid date.");
+  if (!data.title) errors.push("Add an entry title.");
+  if (!data.type) errors.push("Identify the session type.");
+  if (!data.objective) errors.push("Describe the objective.");
+  if (!data.workCompleted) errors.push("Describe the work completed.");
+  else if (data.workCompleted.split(/\s+/).length < 25) errors.push("Add more specific engineering detail to Work completed (at least 25 words).");
+  if (!data.membersPresent.length) errors.push("Select at least one member present.");
+  data.membersPresent.forEach(member => { if (!lines(data.contributions[member]).length) errors.push(`Describe ${member}'s individual contribution.`); });
+  if (!data.outcome) errors.push("State what changed as an outcome.");
+  if (!data.nextSteps.some(step => step.task)) errors.push("Add a concrete next action.");
+  if (data.nextSteps.some(step => !step.task && step.owner)) errors.push("A next-step owner needs an action.");
+  const decisionFields = [data.decision, data.alternatives, data.rationale, data.tradeoffs, data.decisionOutcome];
+  if (decisionFields.some(Boolean) && (!data.decision || !lines(data.alternatives).length || !data.rationale || !data.tradeoffs || !data.decisionOutcome)) errors.push("Complete every engineering-decision field, or leave all of them blank.");
+  data.evidence.forEach((item, index) => { if (Object.values(item).some(Boolean) && (!item.src || !item.alt || !item.caption || !/^(assets\/[^?#]+|https:\/\/[^\s]+)$/i.test(item.src))) errors.push(`Image ${index + 1} needs an assets/ path or HTTPS URL, alt text, and caption.`); });
+  return errors;
+}
+
+function publishableEntry(data) {
+  return {
+    id: nextLogId(), date: data.date, title: data.title, type: data.type, tags: data.tags,
+    membersPresent: data.membersPresent, objective: data.objective, workCompleted: data.workCompleted,
+    contributions: Object.fromEntries(data.membersPresent.map(member => [member, lines(data.contributions[member])])),
+    decisions: data.decision ? [{ decision: data.decision, alternatives: lines(data.alternatives), rationale: data.rationale, tradeoffs: data.tradeoffs, outcome: data.decisionOutcome }] : [],
+    challenges: data.challenges, outcome: data.outcome, nextSteps: data.nextSteps.filter(step => step.task),
+    evidence: data.evidence.filter(item => item.src).map(item => ({ type: "image", ...item })),
+  };
+}
+
+function restoreEditorData(data) {
+  entryForm.reset();
+  editorContributionDrafts = { ...(data.contributions || {}) };
+  for (const name of ["date", "title", "type", "objective", "workCompleted", "challenges", "outcome", "decision", "alternatives", "rationale", "tradeoffs", "decisionOutcome"]) entryField(name).value = data[name] || "";
+  document.querySelectorAll('#editor-tag-options input').forEach(input => { input.checked = (data.tags || []).includes(input.value); });
+  document.querySelectorAll('#editor-member-options input').forEach(input => { input.checked = (data.membersPresent || []).includes(input.value); });
+  renderEditorContributions(data.contributions || {});
+  document.getElementById("editor-next-steps").innerHTML = "";
+  (data.nextSteps?.length ? data.nextSteps : [{ task: "", owner: "" }]).forEach(step => addStepRow(step.task, step.owner));
+  document.getElementById("editor-evidence").innerHTML = "";
+  (data.evidence || []).forEach(addEvidenceRow);
+  document.getElementById("editor-output").hidden = true;
+}
+
+function wireEntryEditor() {
+  document.getElementById("editor-tag-options").innerHTML = editorTags.map(tag => `<label><input type="checkbox" value="${escapeHtml(tag)}"> ${escapeHtml(tag)}</label>`).join("");
+  document.getElementById("editor-member-options").innerHTML = teamMembers.map(member => `<label><input type="checkbox" value="${escapeHtml(member.name)}"> ${escapeHtml(member.name)}</label>`).join("");
+  addStepRow();
+  try { const saved = localStorage.getItem(draftStorageKey); if (saved) { restoreEditorData(JSON.parse(saved)); showEditorMessage("Saved browser draft restored. It has not been published."); } }
+  catch { showEditorMessage("Browser draft storage is unavailable. You can still generate and copy an entry."); }
+  const toggle = document.getElementById("editor-toggle");
+  toggle.addEventListener("click", () => { const open = toggle.getAttribute("aria-expanded") === "true"; toggle.setAttribute("aria-expanded", String(!open)); document.getElementById("entry-editor").hidden = open; toggle.textContent = open ? "Write a log entry ↗" : "Close editor"; if (!open) document.getElementById("editor-title").focus(); });
+  document.getElementById("editor-member-options").addEventListener("change", () => renderEditorContributions());
+  let saveTimer;
+  const autoSave = () => { document.getElementById("editor-output").hidden = true; clearTimeout(saveTimer); saveTimer = setTimeout(() => { try { localStorage.setItem(draftStorageKey, JSON.stringify(editorData())); } catch { /* Manual export remains available. */ } }, 400); };
+  entryForm.addEventListener("input", autoSave);
+  entryForm.addEventListener("change", autoSave);
+  document.getElementById("add-next-step").addEventListener("click", () => addStepRow());
+  document.getElementById("add-evidence").addEventListener("click", () => addEvidenceRow());
+  entryForm.addEventListener("click", event => { if (event.target.matches("[data-remove-row]")) { event.target.closest(".editor-row").remove(); } });
+  document.getElementById("save-draft").addEventListener("click", () => { try { localStorage.setItem(draftStorageKey, JSON.stringify(editorData())); showEditorMessage("Draft saved in this browser. It is not on the public website yet."); } catch { showEditorMessage("Could not save in this browser. Copy the generated entry to keep your work.", true); } });
+  document.getElementById("clear-draft").addEventListener("click", () => { if (!window.confirm("Clear this form and its saved browser draft?")) return; try { localStorage.removeItem(draftStorageKey); } catch { /* Storage may be disabled. */ } restoreEditorData({}); showEditorMessage("Form cleared."); });
+  entryForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const data = editorData(); const errors = validateEditorData(data);
+    if (errors.length) { showEditorMessage(errors.join(" "), true); document.getElementById("editor-output").hidden = true; return; }
+    const entry = publishableEntry(data);
+    document.getElementById("generated-entry").value = `${JSON.stringify(entry, null, 2)},`;
+    document.getElementById("editor-preview").innerHTML = renderLog(entry).replaceAll(`id="log-${entry.id}"`, `id="draft-log-${entry.id}"`).replaceAll(`id="log-title-${entry.id}"`, `id="draft-title-${entry.id}"`).replaceAll(`aria-labelledby="log-title-${entry.id}"`, `aria-labelledby="draft-title-${entry.id}"`);
+    document.getElementById("editor-output").hidden = false;
+    showEditorMessage(`Log #${entry.id} is ready to review. Copy and commit it to publish.`);
+    document.getElementById("editor-output").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  document.getElementById("copy-entry").addEventListener("click", async () => { const value = document.getElementById("generated-entry").value; try { await navigator.clipboard.writeText(value); showEditorMessage("Entry copied. Paste it into designLogs on GitHub and commit."); } catch { document.getElementById("generated-entry").focus(); document.getElementById("generated-entry").select(); showEditorMessage("Copy is unavailable here. The entry is selected; press ⌘C or Ctrl+C."); } });
+}
+
 function wireEvents() {
   document.getElementById("log-search").addEventListener("input", event => { state.search = event.target.value.trim().toLowerCase(); renderLogList(); });
   document.getElementById("member-filter").addEventListener("change", event => { state.member = event.target.value; renderLogList(); });
@@ -402,3 +526,4 @@ renderDecisions();
 renderMilestones();
 renderDocuments();
 wireEvents();
+wireEntryEditor();

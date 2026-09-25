@@ -42,6 +42,19 @@ When renaming a team member, update that exact name in every log's `membersPrese
 
 ## Add a weekly design-log entry
 
+### Guided entry editor (recommended)
+
+1. Open the [live site](https://ur8.github.io/mte481-design-log/) and go to **Design log → Write a log entry**.
+2. Fill in the date, title, session type, participating members, objective, specific work, each person's individual contributions, outcome, and next actions. Add a decision or image evidence when relevant. Use one line per contribution and per decision alternative.
+3. The form saves a draft automatically in **this browser only**. **Save browser draft** also saves on demand. A draft is private to this browser and is not visible to instructors or teammates; browser data can be cleared, so do not treat it as the team's permanent record.
+4. Select **Review & generate entry**. Fix any missing-field messages, inspect the preview, and select **Copy entry**. The generated entry is valid JavaScript object syntax, with the next available numeric log ID.
+5. Select **Open script.js on GitHub**. Sign in with a GitHub account that can edit the repository. Paste the copied entry immediately below `const designLogs = [` near the top of the file, then select **Commit changes**. If GitHub proposes a fork instead of a direct commit, ask the repository owner to grant write access or create a pull request for review.
+6. Reload the public site after GitHub Pages publishes. Confirm the new log appears in its week and that the overview, filters, contributor counts, and decision table are correct. If another teammate published while you were drafting, adjust the ID to avoid a duplicate.
+
+GitHub Pages is static hosting, so the form cannot publish directly or share drafts across devices. The GitHub commit is the publishing step. Visitors and instructors still need no login. Use **Clear form** after confirming the entry is live.
+
+### Editing the data file directly
+
 1. Open `script.js` and find `ADD NEW DESIGN LOGS HERE`.
 2. Duplicate a complete object inside `designLogs`. Keep the commas between objects.
 3. Give it a **unique numeric `id`**, an ISO `date` (`YYYY-MM-DD`), a specific `title`, session `type`, and relevant `tags`.

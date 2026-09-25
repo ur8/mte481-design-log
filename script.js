@@ -14,7 +14,7 @@ const project = {
 
 // These describe reported experience, not finalized work assignments.
 const teamMembers = [
-  { name: "Uday Roy", role: "Autonomy software", initials: "UR", areas: ["Python", "C++", "Autonomy", "Some hardware experience"] },
+  { name: "Uday Roy", role: "Autonomy software", initials: "UR", areas: ["Autonomy software", "Some hardware experience"] },
   { name: "Aviral Gupta", role: "Machine learning / data", initials: "AG", areas: ["Machine learning", "Data"] },
   { name: "Benedek Boda", role: "Firmware", initials: "BB", areas: ["Firmware"] },
   { name: "Tom Wang", role: "Software", initials: "TW", areas: ["Full-stack software"] },

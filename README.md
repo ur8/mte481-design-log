@@ -7,7 +7,7 @@ A static, single-page engineering record for the University of Waterloo MTE 481 
 
 This Desktop folder is connected to the repository. After editing, review the site locally, then commit and push your changes from VS Code's Source Control panel. GitHub Pages republishes the `main` branch automatically.
 
-**Before sharing with instructors:** all six entries, the team roles, milestone dates, and the two diagrams are **illustrative examples**. Replace them with actual, verified work. Do not leave sample progress presented as team progress.
+**Current record:** the September 18–24 entries reflect the team's reported concept discussions, faculty feedback, and provisional AR-glasses selection. The per-person notes record group participation and reported technical experience; replace them with more specific, confirmed preparation or follow-up work as it becomes available. The AR-glasses scope still needs professor review.
 
 ## Files
 
@@ -16,14 +16,14 @@ index.html                 Page structure and navigation
 style.css                  Layout, typography, responsive styles
 script.js                  Project/team data, logs, milestones, documents, rendering
 assets/favicon.svg         Site icon
-assets/optical-concepts.svg      Illustrative diagram
-assets/system-architecture.svg   Illustrative diagram
+assets/mte481-concept-discussion-brief.pdf   September 21 presentation brief
+assets/mte481-project-ideas.pdf              Initial idea list
 README.md                  This guide
 ```
 
 ## Run locally
 
-Open `index.html` in a browser. All site code and sample diagrams use relative paths, so it works from a local file and from a static host. Internet access is not needed for the core site.
+Open `index.html` in a browser. Site code and linked local documents use relative paths, so the site works from a local file and from a static host. Internet access is not needed for the core site.
 
 If a browser's local-file settings block a feature, serve this folder locally with Python:
 
@@ -36,7 +36,7 @@ Then open `http://localhost:8000`. Stop the server with `Ctrl+C`.
 
 ## Update project status and team
 
-At the top of `script.js`, edit `project` for the title, description, current phase, and current focus. Set `sampleMode: false` after replacing all illustrative content; this removes the sample-content notice. Edit `teamMembers` for each person's real name, role, initials, and technical areas. The overview team list and Team cards update automatically. The number of entries per person is calculated from `contributions` in the logs.
+At the top of `script.js`, edit `project` for the title, description, current phase, current focus, and provisional-status `recordNotice`. Edit `teamMembers` for each person's name, reported experience, initials, and technical areas. The overview team list and Team cards update automatically. The number of entries per person is calculated from `contributions` in the logs.
 
 When renaming a team member, update that exact name in every log's `membersPresent`, `contributions`, and any `nextSteps.owner`. A name mismatch triggers a console warning for `membersPresent` and contribution records.
 
@@ -69,17 +69,17 @@ Minimal shape (replace every example value):
 
 ```js
 {
-  id: 7,
+  id: 6,
   date: "2026-10-01",
-  title: "First optical prototype review",
-  type: "Prototype Work Session",
-  tags: ["Mechanical", "Testing"],
-  membersPresent: ["Uday Roy", "Team Member 2"],
+  title: "AR-glasses feasibility review",
+  type: "Research Session",
+  tags: ["Research", "Software"],
+  membersPresent: ["Uday Roy", "Aviral Gupta"],
   objective: "State the question this session answered.",
   workCompleted: "Describe the actual setup, comparison, observation, and engineering progress in enough detail for a reviewer to understand what was done.",
   contributions: {
     "Uday Roy": ["Describe Uday's specific work."],
-    "Team Member 2": ["Describe this member's specific work."]
+    "Aviral Gupta": ["Describe this member's specific work."]
   },
   decisions: [],
   challenges: "Describe the limitation, failure, or unresolved issue.",
@@ -123,7 +123,7 @@ Find `EDIT MILESTONES AND DOCUMENT LINKS HERE` in `script.js`. Add or edit an it
 { title: "Test plan", type: "Validation", note: "Revision 2, reviewed October 8", href: "assets/test-plan.pdf" }
 ```
 
-`href` may be a local file path or a complete `https://` URL to a resource instructors can open without requesting access. Leave `href: ""` until a file exists; the site will show **Link pending** instead of a broken link. Check Google Drive sharing permissions from a signed-out browser window before publishing a Drive link.
+`href` may be a local file path or a complete `https://` URL to a resource instructors can open without requesting access. Leave `href: ""` until a file exists; the site will show **Link pending** instead of a broken link. Check Google Drive sharing permissions from a signed-out browser window before publishing a Drive link. Existing entries can also use `resources: [{ title: "Concept brief", href: "assets/mte481-concept-discussion-brief.pdf" }]` to show a source-document link in the full session record.
 
 Update `milestones` in the same section. Set each `status` to `complete`, `current`, or `upcoming`; optionally add `logId` to link the milestone to a design-log entry. Keep milestone targets aligned with your actual project plan.
 

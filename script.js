@@ -2,216 +2,181 @@
 
 // ============================================================
 // EDIT PROJECT AND TEAM INFORMATION HERE
-// Replace all sample copy with your team's verified information.
+// Keep status, expertise, and the provisional concept current.
 // ============================================================
 const project = {
-  name: "Portable Automotive HUD",
-  description: "A dashboard-mounted display concept that places navigation and vehicle information within the driver’s forward field of view. The team is exploring a portable LCD and transparent-combiner architecture, with camera-assisted features as a later design option.",
-  currentPhase: "System Architecture",
-  currentFocus: "Define the optical, mechanical, and electronics interfaces for a first prototype.",
-  sampleMode: true, // Set to false after replacing all illustrative content with verified work.
+  name: "AR Episodic Memory Glasses",
+  description: "A proposed wearable system that captures user-enabled first-person video and audio, indexes recent moments, and helps a user retrieve a relevant event and replay its source clip. This is the team's current direction for the next faculty discussion; the concept and scope remain open to revision.",
+  currentPhase: "Concept selection & feasibility",
+  currentFocus: "Review existing vision-based systems and refine the AR-glasses concept before the next professor meeting.",
+  recordNotice: "AR glasses are the team's provisional direction, not a final approved design. The September entries document reported group activity; confirm each person's more specific preparation or follow-up work as it becomes available.",
 };
 
+// These describe reported experience, not finalized work assignments.
 const teamMembers = [
-  { name: "Uday Roy", role: "Software / Systems", initials: "UR", areas: ["Computer vision", "Embedded software", "System integration"] },
-  { name: "Team Member 2", role: "Optics / Electronics", initials: "02", areas: ["Display selection", "Power budget", "Optical research"] },
-  { name: "Team Member 3", role: "Mechanical Design", initials: "03", areas: ["Enclosure CAD", "Combiner mechanism", "Packaging"] },
-  { name: "Team Member 4", role: "Validation / UX", initials: "04", areas: ["User needs", "Test planning", "Driver interaction"] },
+  { name: "Uday Roy", role: "Autonomy software", initials: "UR", areas: ["Python", "C++", "Autonomy", "Some hardware experience"] },
+  { name: "Aviral Gupta", role: "Machine learning / data", initials: "AG", areas: ["Machine learning", "Data"] },
+  { name: "Benedek Boda", role: "Firmware", initials: "BB", areas: ["Firmware"] },
+  { name: "Tom Wang", role: "Software", initials: "TW", areas: ["Full-stack software"] },
+  { name: "Yibo Yang", role: "Embedded / hardware", initials: "YY", areas: ["Embedded systems", "Hardware"] },
 ];
 
 // ============================================================
 // ADD NEW DESIGN LOGS HERE
-// Duplicate one complete object, assign a unique id and ISO date,
-// then replace every field with verified work. Newest-first display
-// order is automatic. Every member present needs a contribution.
+// The September records below use only reported group activity and
+// the supplied concept documents. Replace broad participation notes
+// with each person's confirmed, specific work when known.
 // ============================================================
 const designLogs = [
   {
     id: 1,
-    date: "2026-09-08",
-    title: "Problem definition and user needs",
-    type: "Team Design Meeting",
+    date: "2026-09-18",
+    title: "Initial capstone idea generation",
+    type: "Team Concept Discussion",
     tags: ["Meeting", "Research"],
-    membersPresent: ["Uday Roy", "Team Member 2", "Team Member 3", "Team Member 4"],
-    objective: "Define the driver problem the portable HUD should solve and set boundaries for the first prototype.",
-    workCompleted: "Drafted a need statement for glanceable navigation and speed information without requiring permanent vehicle modification. Separated core functions (readable speed and turn cues) from possible later functions (camera-assisted hazard awareness). Listed initial constraints around dashboard footprint, visibility, power, and mounting reversibility.",
+    membersPresent: ["Uday Roy", "Aviral Gupta", "Benedek Boda", "Tom Wang", "Yibo Yang"],
+    objective: "Generate possible MTE 481 capstone directions and compare them with the team's interests and skills.",
+    workCompleted: "The group began building a broad idea list that included inspection devices, a smoke-response robot, an offline hand-cranked assistant, smart appliances, wearable glasses, a driver HUD, and a referee band. For each proposal discussed, the team considered its potential value, technical difficulty, and whether the work would suit the combined software, ML, firmware, embedded, and hardware experience in the group.",
     contributions: {
-      "Uday Roy": ["Mapped likely navigation and vehicle-data software inputs.", "Proposed a modular split between display logic and future camera processing."],
-      "Team Member 2": ["Collected initial questions about display brightness and daytime readability."],
-      "Team Member 3": ["Outlined dashboard mounting and enclosure size constraints for a portable unit."],
-      "Team Member 4": ["Drafted driver-use scenarios and identified distraction as a validation concern."],
+      "Uday Roy": ["Participated in the group idea discussion and considered how autonomy software experience in Python and C++ could fit the concepts."],
+      "Aviral Gupta": ["Participated in the group idea discussion and considered where ML and data work could contribute."],
+      "Benedek Boda": ["Participated in the group idea discussion and considered how firmware work could fit the concepts."],
+      "Tom Wang": ["Participated in the group idea discussion and considered the software development needs of the concepts."],
+      "Yibo Yang": ["Participated in the group idea discussion and considered embedded and hardware needs."],
     },
     decisions: [],
-    challenges: "The team has not yet confirmed which vehicle data interface is practical; prototype speed input may need to be simulated first.",
-    outcome: "A first-pass problem statement and a clear boundary between prototype essentials and optional capabilities were established for review.",
-    nextSteps: [
-      { task: "Review comparable portable HUD products and optical arrangements.", owner: "Team Member 2" },
-      { task: "Turn user needs into measurable prototype requirements.", owner: "Team Member 4" },
-    ],
+    challenges: "The list was exploratory; feasibility, scope, and access to realistic test settings had not yet been established.",
+    outcome: "The team had a shared starting list for a more focused comparison the following day.",
+    nextSteps: [{ task: "Continue generating ideas and discuss each concept's strengths, risks, and fit with the team.", owner: "" }],
+    resources: [{ title: "Initial project ideas", href: "assets/mte481-project-ideas.pdf" }],
     evidence: [],
   },
   {
     id: 2,
-    date: "2026-09-11",
-    title: "Existing HUD technology review",
-    type: "Research Session",
-    tags: ["Research", "Electrical"],
-    membersPresent: ["Uday Roy", "Team Member 2", "Team Member 4"],
-    objective: "Compare common automotive HUD display paths and identify risks for a removable device.",
-    workCompleted: "Compared windshield-reflection and separate-combiner approaches at a concept level. Catalogued questions about sunlight washout, ghost reflections, focal distance, display mirroring, and windshield variability. Recorded which questions can be answered with a benchtop mockup before committing to a packaging layout.",
+    date: "2026-09-19",
+    title: "Concept pros, cons, and team fit",
+    type: "Team Concept Discussion",
+    tags: ["Meeting", "Research"],
+    membersPresent: ["Uday Roy", "Aviral Gupta", "Benedek Boda", "Tom Wang", "Yibo Yang"],
+    objective: "Continue idea generation and test whether the candidate projects fit the team's interests and experience.",
+    workCompleted: "The group continued discussing the ideas gathered across September 18 and 19. Conversation covered the benefits and drawbacks of each direction, the likely software and hardware effort, and how the members' backgrounds could support the work. The discussion kept several options open rather than treating the first attractive idea as a final project choice.",
     contributions: {
-      "Uday Roy": ["Outlined the rendering pipeline needed to mirror and position navigation cues."],
-      "Team Member 2": ["Compared display and combiner optical paths and documented readability risks."],
-      "Team Member 4": ["Converted research findings into preliminary evaluation criteria for driver visibility."],
+      "Uday Roy": ["Joined the pros-and-cons discussion, including the fit of autonomy software and limited hardware experience."],
+      "Aviral Gupta": ["Joined the pros-and-cons discussion, including the fit of ML and data experience."],
+      "Benedek Boda": ["Joined the pros-and-cons discussion, including the fit of firmware experience."],
+      "Tom Wang": ["Joined the pros-and-cons discussion, including the fit of full-stack software experience."],
+      "Yibo Yang": ["Joined the pros-and-cons discussion, including the fit of embedded and hardware experience."],
     },
     decisions: [],
-    challenges: "Published product specifications are not a substitute for visibility measurements in the team’s own geometry.",
-    outcome: "The team identified optical readability as an early prototype risk and scheduled a geometry comparison.",
-    nextSteps: [
-      { task: "Sketch candidate LCD-to-combiner geometries.", owner: "Team Member 3" },
-      { task: "Define an observation checklist for a non-driving bench review.", owner: "Team Member 4" },
-    ],
+    challenges: "The group still needed to narrow the broad list to a small set of concepts that could be explained and reviewed with the professor.",
+    outcome: "A clearer comparison of team fit and project risks prepared the group to select three concepts for faculty feedback.",
+    nextSteps: [{ task: "Meet to choose three ideas for the professor discussion.", owner: "" }],
+    resources: [{ title: "Initial project ideas", href: "assets/mte481-project-ideas.pdf" }],
     evidence: [],
   },
   {
     id: 3,
-    date: "2026-09-15",
-    title: "Concept generation and evaluation criteria",
-    type: "Team Design Meeting",
-    tags: ["Meeting", "Mechanical", "Research"],
-    membersPresent: ["Uday Roy", "Team Member 2", "Team Member 3", "Team Member 4"],
-    objective: "Generate feasible form factors and decide how concepts will be compared.",
-    workCompleted: "Sketched a fixed-combiner base, a fold-up combiner base, and a windshield-reflection base. Created a qualitative comparison using portability, optical control, packaging, and ease of setup. Identified the hinge and combiner storage envelope as the main mechanical questions for the fold-up concept.",
+    date: "2026-09-20",
+    title: "Three concepts selected for faculty discussion",
+    type: "Team Selection Meeting",
+    tags: ["Meeting", "Design Decision"],
+    membersPresent: ["Uday Roy", "Aviral Gupta", "Benedek Boda", "Tom Wang", "Yibo Yang"],
+    objective: "Choose three concepts from the initial idea list to present for professor feedback.",
+    workCompleted: "The team reviewed the broader idea list and selected AR Episodic Memory Glasses, SmokeScout Drone, and DriveSight Portable Lane-Aware HUD for the concept discussion. The presentation brief framed each idea around the need, proposed system, intended scope, major constraints, and questions for the professor. This was a shortlist for feedback, not a final capstone selection.",
     contributions: {
-      "Uday Roy": ["Checked how each concept would affect screen orientation and UI mirroring."],
-      "Team Member 2": ["Compared expected optical adjustment needs across the three concepts."],
-      "Team Member 3": ["Created form-factor sketches and identified hinge clearance as a packaging constraint."],
-      "Team Member 4": ["Defined repeatable criteria for setup effort and driver sightline review."],
-    },
-    decisions: [],
-    challenges: "The current comparison is qualitative; the concepts still need a physical mockup and measured packaging dimensions.",
-    outcome: "Three concepts and a common evaluation framework were ready for the architecture review.",
-    nextSteps: [
-      { task: "Draw a dimensioned optical-path concept for each combiner option.", owner: "Team Member 3" },
-      { task: "Identify candidate transparent materials for a mockup.", owner: "Team Member 2" },
-    ],
-    evidence: [{ type: "image", src: "assets/optical-concepts.svg", alt: "Illustrative line diagram comparing windshield reflection, fixed combiner, and fold-up combiner paths", caption: "Figure 1 · Conceptual optical-path comparison (illustrative; not measured data)." }],
-  },
-  {
-    id: 4,
-    date: "2026-09-18",
-    title: "Combiner versus windshield projection",
-    type: "Architecture Review",
-    tags: ["Mechanical", "Research", "Design Decision"],
-    membersPresent: ["Uday Roy", "Team Member 2", "Team Member 3"],
-    objective: "Choose an optical architecture to carry into the first portable prototype layout.",
-    workCompleted: "Compared how each architecture constrains display placement, mounting position, and repeatable viewing geometry. The windshield path depends on vehicle glass angle and location, while a separate combiner gives the team control over the reflecting surface. The team selected a fold-up combiner as the provisional baseline for CAD and mockup work.",
-    contributions: {
-      "Uday Roy": ["Assessed how display orientation and image mirroring would change with each path."],
-      "Team Member 2": ["Documented optical risks associated with variable windshield geometry."],
-      "Team Member 3": ["Compared storage and mounting implications for fixed and fold-up combiner layouts."],
+      "Uday Roy": ["Participated in the group shortlist discussion and reviewed the concepts against autonomy-software interests."],
+      "Aviral Gupta": ["Participated in the group shortlist discussion and reviewed the concepts against ML and data interests."],
+      "Benedek Boda": ["Participated in the group shortlist discussion and reviewed the concepts against firmware interests."],
+      "Tom Wang": ["Participated in the group shortlist discussion and reviewed the concepts against software interests."],
+      "Yibo Yang": ["Participated in the group shortlist discussion and reviewed the concepts against embedded and hardware interests."],
     },
     decisions: [{
-      decision: "Use a fold-up transparent combiner as the provisional prototype baseline.",
-      alternatives: ["Windshield reflection", "Fixed combiner", "Fold-up combiner"],
-      rationale: "A device-controlled reflecting surface offers more repeatable geometry across vehicles while the fold-up form supports portability.",
-      tradeoffs: "Adds a hinge, another mechanical failure point, and a need to control deployed angle.",
-      outcome: "Carry the fold-up layout into the first CAD envelope; revisit after a physical visibility check.",
+      decision: "Present three concepts for faculty feedback: AR Episodic Memory Glasses, SmokeScout Drone, and DriveSight Portable Lane-Aware HUD.",
+      alternatives: ["Other concepts in the initial project-ideas list", "Present only one concept", "Present the three selected concepts"],
+      rationale: "The group wanted professor feedback on multiple directions before committing to a project.",
+      tradeoffs: "Preparing three options reduced the depth available for any single concept at this stage.",
+      outcome: "The three-concept brief became the basis for the September 21 meeting.",
     }],
-    challenges: "No optical performance has been measured yet; the selection is a concept-level decision that must be validated.",
-    outcome: "The provisional architecture changed from an open comparison to a fold-up-combiner CAD baseline.",
-    nextSteps: [
-      { task: "Model the combiner angle adjustment and folded storage envelope.", owner: "Team Member 3" },
-      { task: "Plan a simple readability mockup for the chosen geometry.", owner: "Team Member 2" },
-    ],
-    evidence: [{ type: "image", src: "assets/optical-concepts.svg", alt: "Illustrative optical-path comparison with fold-up combiner marked as the provisional baseline", caption: "Figure 1 · Architecture options used for the provisional selection (illustrative)." }],
-  },
-  {
-    id: 5,
-    date: "2026-09-22",
-    title: "Camera placement and future vision capability",
-    type: "Subsystem Discussion",
-    tags: ["Software", "Mechanical", "Research"],
-    membersPresent: ["Uday Roy", "Team Member 3", "Team Member 4"],
-    objective: "Keep a credible camera path open without letting optional computer vision block the core HUD prototype.",
-    workCompleted: "Compared a camera mounted in the HUD base with a separate centrally mounted camera. Mapped field-of-view, vibration, cable routing, windshield occlusion, and calibration questions for each location. Proposed a modular camera interface so the first display prototype can run with simulated navigation cues while camera placement is evaluated independently.",
-    contributions: {
-      "Uday Roy": ["Outlined a software interface that can accept either recorded frames or a future live camera feed.", "Separated camera processing from essential speed and navigation rendering."],
-      "Team Member 3": ["Compared packaging, wiring, and vibration concerns for integrated versus separate mounting."],
-      "Team Member 4": ["Identified sightline and distraction questions to include in later user observation."],
-    },
-    decisions: [{
-      decision: "Keep camera input modular and outside the first display prototype’s critical path.",
-      alternatives: ["Camera built into the HUD base", "Separate centrally mounted camera", "No camera provision"],
-      rationale: "A modular interface lets the team validate core information display before selecting a camera location or computer vision workload.",
-      tradeoffs: "Defers the final cable routing and calibration design.",
-      outcome: "The system architecture will reserve an interface for camera data without depending on it for basic HUD operation.",
-    }],
-    challenges: "Camera field of view and calibration cannot be resolved from sketches alone.",
-    outcome: "The prototype scope was revised so vision features are an extension rather than a prerequisite for the first display demo.",
-    nextSteps: [
-      { task: "Define the proposed camera data interface and placeholder input.", owner: "Uday Roy" },
-      { task: "Mock up both mounting positions for a visibility review.", owner: "Team Member 3" },
-    ],
+    challenges: "Each concept had unresolved scope and validation questions that required faculty input.",
+    outcome: "Three candidate projects were ready for comparison with the professor.",
+    nextSteps: [{ task: "Present the three-concept brief and record the professor's feedback on each idea.", owner: "" }],
+    resources: [{ title: "Concept discussion brief", href: "assets/mte481-concept-discussion-brief.pdf" }, { title: "Initial project ideas", href: "assets/mte481-project-ideas.pdf" }],
     evidence: [],
   },
   {
-    id: 6,
-    date: "2026-09-24",
-    title: "Preliminary system architecture",
-    type: "Team Design Meeting",
-    tags: ["Meeting", "Electrical", "Software", "Integration", "Design Decision"],
-    membersPresent: ["Uday Roy", "Team Member 2", "Team Member 3", "Team Member 4"],
-    objective: "Define subsystem boundaries and the information flow for the first integrated prototype.",
-    workCompleted: "Created a preliminary block diagram from navigation and speed inputs through a compute module to the LCD, combiner, and driver. Marked separate work packages for enclosure geometry, display and power selection, rendering software, and usability checks. Identified interface questions that must be resolved before parts are committed, including display connection, available power, and whether vehicle speed will be simulated or sourced from the vehicle.",
+    id: 4,
+    date: "2026-09-21",
+    title: "Professor feedback on three capstone concepts",
+    type: "Faculty Concept Meeting",
+    tags: ["Meeting", "Research"],
+    membersPresent: ["Uday Roy", "Aviral Gupta", "Benedek Boda", "Tom Wang", "Yibo Yang"],
+    objective: "Present the three proposed capstone ideas and learn where their scope or validation plans needed adjustment.",
+    workCompleted: "The team presented the concept brief covering AR Episodic Memory Glasses, SmokeScout Drone, and DriveSight Portable Lane-Aware HUD. The professor indicated that the AR-glasses concept was within scope and advised the group to examine existing vision-based systems online. SmokeScout was also within scope; the team was encouraged to work with local clubs or design teams that can support controlled fire-related testing, while falling-debris avoidance might be too ambitious. The driver HUD was within scope, with a warning to plan vehicle testing carefully and explore access to the University of Waterloo race track.",
     contributions: {
-      "Uday Roy": ["Drafted data flow and software modules for navigation, speed, and optional camera input.", "Listed integration interfaces that need early confirmation."],
-      "Team Member 2": ["Mapped display, compute, and power-selection questions onto the block diagram."],
-      "Team Member 3": ["Defined enclosure space claims for the LCD, folding combiner, and mounting base."],
-      "Team Member 4": ["Added readability and setup checks to the architecture review criteria."],
+      "Uday Roy": ["Participated in the team presentation and faculty discussion of the three concepts."],
+      "Aviral Gupta": ["Participated in the team presentation and faculty discussion of the three concepts."],
+      "Benedek Boda": ["Participated in the team presentation and faculty discussion of the three concepts."],
+      "Tom Wang": ["Participated in the team presentation and faculty discussion of the three concepts."],
+      "Yibo Yang": ["Participated in the team presentation and faculty discussion of the three concepts."],
+    },
+    decisions: [],
+    challenges: "The feedback left concept-specific feasibility questions open, especially prior art for AR glasses and safe access to realistic test environments for the drone and HUD.",
+    outcome: "All three options remained viable in principle, with concrete research and validation concerns to inform the final team discussion.",
+    nextSteps: [{ task: "Compare the professor's feedback across the three concepts before choosing a direction.", owner: "" }, { task: "Look for existing vision-based systems relevant to the AR-glasses concept.", owner: "" }],
+    resources: [{ title: "Concept discussion brief", href: "assets/mte481-concept-discussion-brief.pdf" }],
+    evidence: [],
+  },
+  {
+    id: 5,
+    date: "2026-09-24",
+    title: "Provisional selection of AR glasses",
+    type: "Team Decision Meeting",
+    tags: ["Meeting", "Design Decision", "Research"],
+    membersPresent: ["Uday Roy", "Aviral Gupta", "Benedek Boda", "Tom Wang", "Yibo Yang"],
+    objective: "Choose a concept to carry into the next professor meeting while keeping its scope open to discussion.",
+    workCompleted: "After reviewing the three ideas and the September 21 feedback, the group agreed to move forward with AR Episodic Memory Glasses as its current capstone direction. The concept brief describes user-enabled first-person capture, searchable recent events, grounded answers, and replay of the supporting clip. The team has not yet finalized the minimum viable scope or verified how the idea differs from existing vision-based memory systems; these are priorities for the next faculty conversation.",
+    contributions: {
+      "Uday Roy": ["Participated in the group decision to pursue AR glasses for the next faculty discussion."],
+      "Aviral Gupta": ["Participated in the group decision to pursue AR glasses for the next faculty discussion."],
+      "Benedek Boda": ["Participated in the group decision to pursue AR glasses for the next faculty discussion."],
+      "Tom Wang": ["Participated in the group decision to pursue AR glasses for the next faculty discussion."],
+      "Yibo Yang": ["Participated in the group decision to pursue AR glasses for the next faculty discussion."],
     },
     decisions: [{
-      decision: "Separate core HUD display functions from optional camera processing in the first system architecture.",
-      alternatives: ["Single combined processing pipeline", "Modular core display and camera path"],
-      rationale: "The modular boundary allows navigation and speed presentation to be prototyped and evaluated while camera capability remains under investigation.",
-      tradeoffs: "Requires a defined interface and an additional integration step if vision features are added later.",
-      outcome: "Use the modular block diagram as the next CAD, electronics, and software planning reference.",
+      decision: "Carry AR Episodic Memory Glasses forward as the provisional project concept for the next professor meeting.",
+      alternatives: ["AR Episodic Memory Glasses", "SmokeScout Drone", "DriveSight Portable Lane-Aware HUD"],
+      rationale: "The group selected AR glasses after comparing the three ideas and receiving feedback that the concept was within course scope. The detailed reasons for preferring it over the other two have not yet been recorded.",
+      tradeoffs: "Existing-system differentiation, recording privacy, wearable power and thermal limits, and achievable prototype scope still need investigation.",
+      outcome: "The overview and next meeting preparation now focus on AR glasses; the choice remains open to professor discussion.",
     }],
-    challenges: "Component choices and interface specifications remain open; the diagram is an architecture hypothesis, not a validated build.",
-    outcome: "The team moved from separate concept discussions to one shared preliminary architecture and a list of interface decisions.",
-    nextSteps: [
-      { task: "Confirm display connection and provisional power budget.", owner: "Team Member 2" },
-      { task: "Turn the optical package into a first CAD envelope.", owner: "Team Member 3" },
-      { task: "Build a basic rendering proof of concept with simulated inputs.", owner: "Uday Roy" },
-      { task: "Draft a bench review protocol for legibility and setup.", owner: "Team Member 4" },
-    ],
-    evidence: [{ type: "image", src: "assets/system-architecture.svg", alt: "Illustrative system block diagram connecting inputs, compute module, LCD, combiner, and optional camera", caption: "Figure 2 · Preliminary system block diagram (illustrative architecture)." }],
+    challenges: "The concept is not yet approved as a final scope. The team still needs evidence on prior art and a defensible first prototype boundary.",
+    outcome: "AR glasses became the team's working direction, replacing the three-way concept shortlist for next week's presentation.",
+    nextSteps: [{ task: "Research existing vision-based and memory-retrieval systems and record how this proposal differs.", owner: "" }, { task: "Refine an achievable AR-glasses MVP and bring it to the next professor meeting.", owner: "" }],
+    resources: [{ title: "Concept discussion brief", href: "assets/mte481-concept-discussion-brief.pdf" }],
+    evidence: [],
   },
 ];
 
 // ============================================================
 // EDIT MILESTONES AND DOCUMENT LINKS HERE
-// Use a real URL/path only after the resource exists.
-// status: "complete", "current", or "upcoming".
+// Keep targets aligned with actual plans. Add dates when confirmed.
 // ============================================================
 const milestones = [
-  { title: "Problem definition", status: "complete", target: "Sep 2026", logId: 1 },
-  { title: "Concept generation", status: "complete", target: "Sep 2026", logId: 3 },
-  { title: "System architecture", status: "current", target: "Sep 2026", logId: 6 },
-  { title: "Prototype design", status: "upcoming", target: "Oct 2026" },
-  { title: "Prototype fabrication", status: "upcoming", target: "Nov 2026" },
-  { title: "Integration", status: "upcoming", target: "Winter 2027" },
-  { title: "Testing and validation", status: "upcoming", target: "Winter 2027" },
-  { title: "Final demonstration", status: "upcoming", target: "Spring 2027" },
+  { title: "Idea generation", status: "complete", target: "Sep 18–19, 2026", logId: 2 },
+  { title: "Three-concept shortlist", status: "complete", target: "Sep 20, 2026", logId: 3 },
+  { title: "Initial faculty feedback", status: "complete", target: "Sep 21, 2026", logId: 4 },
+  { title: "Provisional AR-glasses selection", status: "current", target: "Sep 24, 2026", logId: 5 },
+  { title: "AR feasibility and prior-art review", status: "upcoming", target: "Before next faculty meeting" },
+  { title: "Professor scope discussion", status: "upcoming", target: "Week of Sep 28, 2026" },
+  { title: "Requirements and architecture", status: "upcoming", target: "After concept review" },
+  { title: "Prototype and validation", status: "upcoming", target: "To be scheduled" },
 ];
 
 const documents = [
-  { title: "Optical concept diagram", type: "Diagram", note: "Illustrative architecture comparison", href: "assets/optical-concepts.svg" },
-  { title: "System block diagram", type: "Diagram", note: "Preliminary subsystem map", href: "assets/system-architecture.svg" },
-  { title: "Requirements register", type: "Requirements", note: "Add a reviewed document link", href: "" },
-  { title: "Enclosure CAD", type: "CAD", note: "Add after first model review", href: "" },
-  { title: "Electronics schematic", type: "Schematic", note: "Add after circuit definition", href: "" },
-  { title: "Test plan and results", type: "Validation", note: "Add before prototype testing", href: "" },
+  { title: "Concept discussion brief", type: "Presentation brief", note: "Three concepts presented to the professor on September 21", href: "assets/mte481-concept-discussion-brief.pdf" },
+  { title: "Initial project ideas", type: "Idea list", note: "Broad list considered during September 18–20", href: "assets/mte481-project-ideas.pdf" },
+  { title: "Existing vision systems review", type: "Research", note: "Add after prior-art investigation", href: "" },
+  { title: "AR-glasses requirements", type: "Requirements", note: "Add once the concept scope is reviewed", href: "" },
 ];
 
 const categoryOptions = ["All", "Meetings", "Research", "Mechanical", "Electrical", "Software", "Testing", "Design Decisions"];
@@ -260,7 +225,8 @@ function validateLogs(logs) {
 }
 
 function renderOverview() {
-  document.querySelector(".sample-notice").hidden = !project.sampleMode;
+  document.querySelector(".sample-notice").hidden = !project.recordNotice;
+  document.getElementById("record-notice").textContent = project.recordNotice || "";
   document.getElementById("header-project-name").textContent = project.name;
   document.getElementById("project-description").textContent = project.description;
   document.getElementById("overview-team").textContent = teamMembers.map(member => member.name).join(" · ");
@@ -311,7 +277,7 @@ function renderDecision(decision) {
 }
 
 function renderEvidence(evidence) {
-  if (!evidence?.length) return `<p class="no-evidence">No artifact attached to this sample entry.</p>`;
+  if (!evidence?.length) return `<p class="no-evidence">No image attached to this entry.</p>`;
   return `<div class="evidence-grid">${evidence.map(item => `<figure><button type="button" class="evidence-image" data-image-src="${escapeHtml(item.src)}" data-image-alt="${escapeHtml(item.alt)}" data-image-caption="${escapeHtml(item.caption)}" aria-label="Enlarge ${escapeHtml(item.caption)}"><img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy"><span aria-hidden="true">↗</span></button><figcaption>${escapeHtml(item.caption)}</figcaption></figure>`).join("")}</div>`;
 }
 
@@ -327,7 +293,7 @@ function renderLog(log) {
     <div class="contribution-section"><div class="subsection-heading"><h4>Individual contributions</h4><span>${Object.keys(log.contributions || {}).length} contributors</span></div><div class="contribution-grid">${contributors}</div></div>
     ${log.decisions?.length ? `<div class="decision-summary"><span class="decision-symbol" aria-hidden="true">◆</span><div><span class="field-label">ENGINEERING DECISION</span><p>${escapeHtml(log.decisions[0].decision)}</p></div></div>` : ""}
     <div class="result-grid"><div class="outcome-block"><h4>What changed</h4><p>${escapeHtml(log.outcome)}</p></div><div class="next-block"><h4>Next steps</h4><ul>${nextSteps.map(step => `<li><span class="step-arrow" aria-hidden="true">→</span><span>${escapeHtml(step.task)}${step.owner ? `<small>Owner: ${escapeHtml(step.owner)}</small>` : ""}</span></li>`).join("")}</ul></div></div>
-    <details class="record-details"><summary>Full session record <span aria-hidden="true">+</span></summary><div class="detail-content"><div class="session-detail"><div><span class="field-label">SESSION TYPE</span><p>${escapeHtml(log.type)}</p></div><div><span class="field-label">MEMBERS PRESENT</span><p>${escapeHtml(log.membersPresent.join(", "))}</p></div></div>${log.decisions?.length ? `<section><h4>Decision reasoning</h4>${log.decisions.map(renderDecision).join("")}</section>` : ""}<section><h4>Challenges encountered</h4><p>${escapeHtml(log.challenges || "No challenges recorded.")}</p></section><section><h4>Evidence & artifacts</h4>${renderEvidence(log.evidence)}</section></div></details>
+    <details class="record-details"><summary>Full session record <span aria-hidden="true">+</span></summary><div class="detail-content"><div class="session-detail"><div><span class="field-label">SESSION TYPE</span><p>${escapeHtml(log.type)}</p></div><div><span class="field-label">MEMBERS PRESENT</span><p>${escapeHtml(log.membersPresent.join(", "))}</p></div></div>${log.decisions?.length ? `<section><h4>Decision reasoning</h4>${log.decisions.map(renderDecision).join("")}</section>` : ""}<section><h4>Challenges encountered</h4><p>${escapeHtml(log.challenges || "No challenges recorded.")}</p></section>${log.resources?.length ? `<section><h4>Source documents</h4><ul class="resource-list">${log.resources.map(item => `<li><a href="${escapeHtml(item.href)}" target="_blank" rel="noopener">${escapeHtml(item.title)} ↗</a></li>`).join("")}</ul></section>` : ""}<section><h4>Evidence & artifacts</h4>${renderEvidence(log.evidence)}</section></div></details>
   </article>`;
 }
 

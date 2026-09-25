@@ -234,6 +234,8 @@ h2{font-size:37px;line-height:1.2;letter-spacing:-.045em;color:var(--navy);margi
 .editor-step-title p{font-size:11px;color:var(--muted);margin:0}
 .editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
 .editor-grid label,.editor-fields label,.editor-row label,.contribution-input{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:var(--navy)}
+.editor-grid label,.editor-fields label,.editor-row label{display:block}
+.editor-grid label>input,.editor-fields label>input,.editor-fields label>textarea,.editor-row label>input,.editor-row label>select{margin-top:6px}
 .entry-editor input:not([type=checkbox]),.entry-editor select,.entry-editor textarea{width:100%;min-width:0;border:1px solid #c8d3db;background:#fff;color:var(--ink);border-radius:5px;padding:10px 11px;font:400 13px/1.5 var(--sans)}
 .entry-editor textarea{resize:vertical}
 .entry-editor input::placeholder,.entry-editor textarea::placeholder{color:#738291}

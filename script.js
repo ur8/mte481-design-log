@@ -480,7 +480,7 @@ function wireEntryEditor() {
   document.getElementById("add-evidence").addEventListener("click", () => addEvidenceRow());
   entryForm.addEventListener("click", event => { if (event.target.matches("[data-remove-row]")) { event.target.closest(".editor-row").remove(); } });
   document.getElementById("save-draft").addEventListener("click", () => { try { localStorage.setItem(draftStorageKey, JSON.stringify(editorData())); showEditorMessage("Draft saved in this browser. It is not on the public website yet."); } catch { showEditorMessage("Could not save in this browser. Copy the generated entry to keep your work.", true); } });
-  document.getElementById("clear-draft").addEventListener("click", () => { if (!window.confirm("Clear this form and its saved browser draft?")) return; try { localStorage.removeItem(draftStorageKey); } catch { /* Storage may be disabled. */ } restoreEditorData({}); showEditorMessage("Form cleared."); });
+  document.getElementById("clear-draft").addEventListener("click", () => { if (!window.confirm("Clear this form and its saved browser draft?")) return; clearTimeout(saveTimer); try { localStorage.removeItem(draftStorageKey); } catch { /* Storage may be disabled. */ } restoreEditorData({}); showEditorMessage("Form cleared."); });
   entryForm.addEventListener("submit", event => {
     event.preventDefault();
     const data = editorData(); const errors = validateEditorData(data);

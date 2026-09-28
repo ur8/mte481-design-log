@@ -7,6 +7,8 @@ A static, single-page engineering record for the University of Waterloo MTE 481 
 
 This Desktop folder is connected to the repository. After editing, review the site locally, then commit and push your changes from VS Code's Source Control panel. GitHub Pages republishes the `main` branch automatically.
 
+When publishing changes to `script.js` or `style.css`, update the `?v=...` value for that file in `index.html` as part of the same commit. This makes returning visitors load the new file instead of a cached copy. The public site URL stays the same.
+
 **Current record:** the September 18–24 entries reflect the team's reported concept discussions, faculty feedback, and provisional AR-glasses selection. The per-person notes record group participation and reported technical experience; replace them with more specific, confirmed preparation or follow-up work as it becomes available. The AR-glasses scope still needs professor review.
 
 ## Files

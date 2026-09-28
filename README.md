@@ -18,6 +18,7 @@ script.js                  Project/team data, logs, milestones, documents, rende
 assets/favicon.svg         Site icon
 assets/mte481-concept-discussion-brief.pdf   September 21 presentation brief
 assets/mte481-project-ideas.pdf              Initial idea list
+assets/ar-episodic-memory-glasses-proposal-2026-09-28.pdf   September 28 proposal
 README.md                  This guide
 ```
 
@@ -123,7 +124,7 @@ Find `EDIT MILESTONES AND DOCUMENT LINKS HERE` in `script.js`. Add or edit an it
 { title: "Test plan", type: "Validation", note: "Revision 2, reviewed October 8", href: "assets/test-plan.pdf" }
 ```
 
-`href` may be a local file path or a complete `https://` URL to a resource instructors can open without requesting access. Leave `href: ""` until a file exists; the site will show **Link pending** instead of a broken link. Check Google Drive sharing permissions from a signed-out browser window before publishing a Drive link. Existing entries can also use `resources: [{ title: "Concept brief", href: "assets/mte481-concept-discussion-brief.pdf" }]` to show a source-document link in the full session record.
+`href` may be a local file path or a complete `https://` URL to a resource instructors can open without requesting access. Leave `href: ""` until a file exists; the site will show **Link pending** instead of a broken link. Check Google Drive sharing permissions from a signed-out browser window before publishing a Drive link. Entries can also use `resources: [{ title: "Concept brief", href: "assets/mte481-concept-discussion-brief.pdf" }]` to show an attachment directly on the log card.
 
 Update `milestones` in the same section. Set each `status` to `complete`, `current`, or `upcoming`; optionally add `logId` to link the milestone to a design-log entry. Keep milestone targets aligned with your actual project plan.
 

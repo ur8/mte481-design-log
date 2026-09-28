@@ -152,7 +152,10 @@ const designLogs = [
     challenges: "The concept is not yet approved as a final scope. The team still needs evidence on prior art and a defensible first prototype boundary.",
     outcome: "AR glasses became the team's working direction, replacing the three-way concept shortlist for next week's presentation.",
     nextSteps: [{ task: "Research existing vision-based and memory-retrieval systems and record how this proposal differs.", owner: "" }, { task: "Refine an achievable AR-glasses MVP and bring it to the next professor meeting.", owner: "" }],
-    resources: [{ title: "Concept discussion brief", href: "assets/mte481-concept-discussion-brief.pdf" }],
+    resources: [
+      { title: "AR glasses design problem proposal · September 28", href: "assets/ar-episodic-memory-glasses-proposal-2026-09-28.pdf" },
+      { title: "Concept discussion brief", href: "assets/mte481-concept-discussion-brief.pdf" },
+    ],
     evidence: [],
   },
 ];
@@ -173,6 +176,7 @@ const milestones = [
 ];
 
 const documents = [
+  { title: "AR glasses design problem proposal", type: "Proposal", note: "September 28 faculty discussion draft · related to Log #05", href: "assets/ar-episodic-memory-glasses-proposal-2026-09-28.pdf" },
   { title: "Concept discussion brief", type: "Presentation brief", note: "Three concepts presented to the professor on September 21", href: "assets/mte481-concept-discussion-brief.pdf" },
   { title: "Initial project ideas", type: "Idea list", note: "Broad list considered during September 18–20", href: "assets/mte481-project-ideas.pdf" },
   { title: "Existing vision systems review", type: "Research", note: "Add after prior-art investigation", href: "" },
@@ -281,6 +285,11 @@ function renderEvidence(evidence) {
   return `<div class="evidence-grid">${evidence.map(item => `<figure><button type="button" class="evidence-image" data-image-src="${escapeHtml(item.src)}" data-image-alt="${escapeHtml(item.alt)}" data-image-caption="${escapeHtml(item.caption)}" aria-label="Enlarge ${escapeHtml(item.caption)}"><img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt)}" loading="lazy"><span aria-hidden="true">↗</span></button><figcaption>${escapeHtml(item.caption)}</figcaption></figure>`).join("")}</div>`;
 }
 
+function renderAttachments(resources) {
+  if (!resources?.length) return "";
+  return `<div class="log-attachments"><h4>Attachments</h4><ul>${resources.map(item => `<li><a href="${escapeHtml(item.href)}" target="_blank" rel="noopener">${escapeHtml(item.title)} <span aria-hidden="true">↗</span></a></li>`).join("")}</ul></div>`;
+}
+
 function renderLog(log) {
   const contributors = Object.entries(log.contributions || {}).filter(([, items]) => items?.length).map(([member, items]) => renderContribution(member, items)).join("");
   const nextSteps = (log.nextSteps || []).map(step => typeof step === "string" ? { task: step, owner: "" } : step);
@@ -293,7 +302,8 @@ function renderLog(log) {
     <div class="contribution-section"><div class="subsection-heading"><h4>Individual contributions</h4><span>${Object.keys(log.contributions || {}).length} contributors</span></div><div class="contribution-grid">${contributors}</div></div>
     ${log.decisions?.length ? `<div class="decision-summary"><span class="decision-symbol" aria-hidden="true">◆</span><div><span class="field-label">ENGINEERING DECISION</span><p>${escapeHtml(log.decisions[0].decision)}</p></div></div>` : ""}
     <div class="result-grid"><div class="outcome-block"><h4>What changed</h4><p>${escapeHtml(log.outcome)}</p></div><div class="next-block"><h4>Next steps</h4><ul>${nextSteps.map(step => `<li><span class="step-arrow" aria-hidden="true">→</span><span>${escapeHtml(step.task)}${step.owner ? `<small>Owner: ${escapeHtml(step.owner)}</small>` : ""}</span></li>`).join("")}</ul></div></div>
-    <details class="record-details"><summary>Full session record <span aria-hidden="true">+</span></summary><div class="detail-content"><div class="session-detail"><div><span class="field-label">SESSION TYPE</span><p>${escapeHtml(log.type)}</p></div><div><span class="field-label">MEMBERS PRESENT</span><p>${escapeHtml(log.membersPresent.join(", "))}</p></div></div>${log.decisions?.length ? `<section><h4>Decision reasoning</h4>${log.decisions.map(renderDecision).join("")}</section>` : ""}<section><h4>Challenges encountered</h4><p>${escapeHtml(log.challenges || "No challenges recorded.")}</p></section>${log.resources?.length ? `<section><h4>Source documents</h4><ul class="resource-list">${log.resources.map(item => `<li><a href="${escapeHtml(item.href)}" target="_blank" rel="noopener">${escapeHtml(item.title)} ↗</a></li>`).join("")}</ul></section>` : ""}<section><h4>Evidence & artifacts</h4>${renderEvidence(log.evidence)}</section></div></details>
+    ${renderAttachments(log.resources)}
+    <details class="record-details"><summary>Full session record <span aria-hidden="true">+</span></summary><div class="detail-content"><div class="session-detail"><div><span class="field-label">SESSION TYPE</span><p>${escapeHtml(log.type)}</p></div><div><span class="field-label">MEMBERS PRESENT</span><p>${escapeHtml(log.membersPresent.join(", "))}</p></div></div>${log.decisions?.length ? `<section><h4>Decision reasoning</h4>${log.decisions.map(renderDecision).join("")}</section>` : ""}<section><h4>Challenges encountered</h4><p>${escapeHtml(log.challenges || "No challenges recorded.")}</p></section><section><h4>Evidence & artifacts</h4>${renderEvidence(log.evidence)}</section></div></details>
   </article>`;
 }
 

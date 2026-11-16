@@ -9,7 +9,7 @@ This Desktop folder is connected to the repository. After editing, review the si
 
 When publishing changes to `script.js` or `style.css`, update the `?v=...` value for that file in `index.html` as part of the same commit. This makes returning visitors load the new file instead of a cached copy. The public site URL stays the same.
 
-**Current record:** the September 18–24 entries reflect the team's reported concept discussions, faculty feedback, and provisional AR-glasses selection. The per-person notes record group participation and reported technical experience; replace them with more specific, confirmed preparation or follow-up work as it becomes available. The AR-glasses scope still needs professor review.
+**Current record:** the September 18–24 entries reflect the team's reported concept discussions, faculty feedback and provisional AR-glasses selection. The weekly group-meeting summaries that follow are retrospective, dated by the start of the week. They record team-level progress and leave unconfirmed attendance and contributions blank.
 
 ## Files
 
@@ -93,6 +93,8 @@ Minimal shape (replace every example value):
   evidence: []
 },
 ```
+
+For a retrospective team summary where the week is known but the exact date and participants were not recorded, use the Monday of that week, set `retrospective: true`, and omit unconfirmed attendance and attribution (`membersPresent: []`, `contributions: {}`). The site labels these entries as retrospective and displays the date as a week start.
 
 Logs are sorted newest first automatically. Week groups, entry count, most recent entry, latest decision, team contribution counts, and the “latest 2 weeks” filter update from the data. “Latest 2 weeks” is relative to the newest logged date, so archived terms remain useful.
 

@@ -6,10 +6,10 @@
 // ============================================================
 const project = {
   name: "AR Episodic Memory Glasses",
-  description: "A proposed wearable system that captures user-enabled first-person video and audio, indexes recent moments, and helps a user retrieve a relevant event and replay its source clip. This is the team's current direction for the next faculty discussion; the concept and scope remain open to revision.",
-  currentPhase: "Concept selection & feasibility",
-  currentFocus: "Review existing vision-based systems and refine the AR-glasses concept before the next professor meeting.",
-  recordNotice: "AR glasses are the team's provisional direction, not a final approved design. The September entries document reported group activity; confirm each person's more specific preparation or follow-up work as it becomes available.",
+  description: "A proposed wearable system that captures user-enabled first-person video and audio, indexes recent moments, and helps a user retrieve a relevant event and replay its source clip. The current prototype uses an off-head Raspberry Pi for capture and control and a laptop for heavier processing.",
+  currentPhase: "Detailed design & component evaluation",
+  currentFocus: "Validate the capture and display interfaces, check frame fit, and shortlist components for the prototype.",
+  recordNotice: "The September 24 entry starts the team's reported weekly meeting cadence. Later entries are retrospective summaries dated by the start of each week; exact meeting dates, attendance and individual contributions are not recorded. Component selections remain open.",
 };
 
 // These describe reported experience, not finalized work assignments.
@@ -158,6 +158,238 @@ const designLogs = [
     ],
     evidence: [],
   },
+  // Dates are week starts for retrospective group summaries.
+  {
+    "id": 6,
+    "date": "2026-09-28",
+    "title": "Proposal scope and first prototype",
+    "type": "Group Meeting",
+    "retrospective": true,
+    "tags": [
+      "Meeting",
+      "Research"
+    ],
+    "membersPresent": [],
+    "contributions": {},
+    "objective": "Turn the selected AR glasses concept into a prototype the team can explain and evaluate.",
+    "workCompleted": "The September 28 proposal framed the workflow around recording a first-person event, finding it later from a spoken question, and replaying the original evidence. The key scope boundary was that the system can only answer about events it recorded and retained.",
+    "outcome": "The proposal gave the group a concrete brief for the next phase of design.",
+    "challenges": "The first prototype needed a narrow scope that could be demonstrated with repeatable scenarios.",
+    "nextSteps": [
+      {
+        "task": "Review existing vision and memory retrieval systems.",
+        "owner": ""
+      },
+      {
+        "task": "Define what the prototype should do when a relevant event was never recorded.",
+        "owner": ""
+      }
+    ],
+    "decisions": [],
+    "resources": [
+      {
+        "title": "September 28 AR glasses proposal",
+        "href": "assets/ar-episodic-memory-glasses-proposal-2026-09-28.pdf"
+      }
+    ],
+    "evidence": []
+  },
+  {
+    "id": 7,
+    "date": "2026-10-05",
+    "title": "Prior art and what to verify",
+    "type": "Group Meeting",
+    "retrospective": true,
+    "tags": [
+      "Meeting",
+      "Research"
+    ],
+    "membersPresent": [],
+    "contributions": {},
+    "objective": "Identify what the project can demonstrate beyond capabilities already shown in prior work.",
+    "workCompleted": "The PDP research considered Ego4D and Encode–Store–Retrieve, alongside patents on multimedia memory queries, last-seen item tracking and recording indicators. The design opportunity was to show whether adding visual context helps find evidence for actions and events that a transcript alone may miss.",
+    "outcome": "The comparison suggested two baselines: transcript-only retrieval for accuracy and manual clip browsing for time.",
+    "challenges": "Prior work supports the retrieval concept but does not establish the power, mass or latency of this wearable.",
+    "nextSteps": [
+      {
+        "task": "Include similar-looking actions and repeated item sightings in the test scenarios.",
+        "owner": ""
+      },
+      {
+        "task": "Record the role of source clips in verifying every answer.",
+        "owner": ""
+      }
+    ],
+    "decisions": [],
+    "resources": [],
+    "evidence": []
+  },
+  {
+    "id": 8,
+    "date": "2026-10-12",
+    "title": "Prototype requirements and test approach",
+    "type": "Group Meeting",
+    "retrospective": true,
+    "tags": [
+      "Meeting",
+      "Testing"
+    ],
+    "membersPresent": [],
+    "contributions": {},
+    "objective": "Turn the concept into measurable design targets and a test plan for the PDP.",
+    "workCompleted": "The PDP specified a CAD 1,500 parts limit, a seven-day rolling archive, a 100 g head-worn mass target and at least 60 minutes of runtime. The test plan also proposed 50 questions with recorded evidence and 20 without it, with targets for retrieval, verified recall and response time.",
+    "outcome": "The design had proposed criteria for bench and scenario tests, including checking that expired media and indexes are both removed.",
+    "challenges": "These figures are targets and planning estimates; performance, runtime and temperature still need measurements.",
+    "nextSteps": [
+      {
+        "task": "Pilot the question set before freezing the test criteria.",
+        "owner": ""
+      },
+      {
+        "task": "Measure power, temperature and mass on the assembled prototype.",
+        "owner": ""
+      }
+    ],
+    "decisions": [],
+    "resources": [],
+    "evidence": []
+  },
+  {
+    "id": 9,
+    "date": "2026-10-19",
+    "title": "PDP assembly and architecture alternatives",
+    "type": "Group Meeting",
+    "retrospective": true,
+    "tags": [
+      "Meeting",
+      "Software"
+    ],
+    "membersPresent": [],
+    "contributions": {},
+    "objective": "Bring the problem statement, requirements, alternatives and validation plan together for the preliminary design presentation.",
+    "workCompleted": "The PDP hardware matrix compared a microcontroller, a Linux/Pi system and a combined design. Its software matrix compared local, cloud and hybrid processing. Under the proposed scoring weights, Linux/Pi and local processing led their respective matrices. The deck tied those choices back to capture, retrieval and replay.",
+    "outcome": "The PDP documented a starting architecture and the tradeoffs the team would revisit during detailed design.",
+    "challenges": "The matrix rankings depended on provisional weights. They did not establish that a Pi could run every model within the latency and power targets.",
+    "nextSteps": [
+      {
+        "task": "Use the PDP matrices as the baseline for detailed design.",
+        "owner": ""
+      },
+      {
+        "task": "Benchmark media capture separately from speech, search and visual processing.",
+        "owner": ""
+      }
+    ],
+    "decisions": [],
+    "resources": [],
+    "evidence": []
+  },
+  {
+    "id": 10,
+    "date": "2026-10-26",
+    "title": "PDP follow-up and hardware/software split",
+    "type": "Group Meeting",
+    "retrospective": true,
+    "tags": [
+      "Meeting",
+      "Electrical"
+    ],
+    "membersPresent": [],
+    "contributions": {},
+    "objective": "Translate the presentation architecture into a concrete prototype plan.",
+    "workCompleted": "The follow-up design compared running the full pipeline on the Pi with using an off-head Pi for capture and control and a laptop for heavier work. The laptop path gives the prototype a place to transcribe, index, search and prepare playback while the glasses carry the sensors, controls and near-eye display.",
+    "outcome": "The Pi-plus-laptop split became the working prototype architecture. Processing can remain local to the prototype without every workload running on the Pi.",
+    "challenges": "The interconnect, power supply and how playback would reach the display had yet to be validated.",
+    "nextSteps": [
+      {
+        "task": "Draw the data and power paths separately.",
+        "owner": ""
+      },
+      {
+        "task": "Check end-to-end capture, transfer and playback on the bench.",
+        "owner": ""
+      }
+    ],
+    "decisions": [
+      {
+        "decision": "Use the laptop for heavy processing and keep an off-head Pi in the working prototype architecture.",
+        "alternatives": [
+          "Pi runs the full pipeline",
+          "Pi handles capture and control; laptop handles search and model processing"
+        ],
+        "rationale": "This keeps the headset light and reduces the initial compute burden on the Pi.",
+        "tradeoffs": "The tether and device-to-device handoff add integration work.",
+        "outcome": "Use the split to guide interface selection and verify it on the bench."
+      }
+    ],
+    "resources": [],
+    "evidence": []
+  },
+  {
+    "id": 11,
+    "date": "2026-11-02",
+    "title": "Draft parts list and detailed design review",
+    "type": "Group Meeting",
+    "retrospective": true,
+    "tags": [
+      "Meeting",
+      "Mechanical"
+    ],
+    "membersPresent": [],
+    "contributions": {},
+    "objective": "Identify which assemblies and interfaces need sizing before parts can be selected.",
+    "workCompleted": "A draft bill of materials supported the detailed-design discussion by covering the display and optics, camera, audio input, controller, power, cabling and frame fabrication. The optical direction under discussion was a small opaque window for one eye, with the surrounding view open. A 1024 × 768 HDMI viewfinder kit was considered for text and clip replay.",
+    "outcome": "The review draft clarified the assemblies that need engineering checks. It was set aside after the meeting and does not control component selection.",
+    "challenges": "Display resolution alone does not establish legibility. Eye relief, apparent size, fit, cable routing and power must all be checked.",
+    "nextSteps": [
+      {
+        "task": "Mock up the eyepiece position and verify that text is legible without blocking the main line of sight.",
+        "owner": ""
+      },
+      {
+        "task": "Check the camera, display and harness clearances before choosing parts.",
+        "owner": ""
+      }
+    ],
+    "decisions": [],
+    "resources": [],
+    "evidence": []
+  },
+  {
+    "id": 12,
+    "date": "2026-11-09",
+    "title": "Frame microphone and compact camera tradeoffs",
+    "type": "Group Meeting",
+    "retrospective": true,
+    "tags": [
+      "Meeting",
+      "Electrical"
+    ],
+    "membersPresent": [],
+    "contributions": {},
+    "objective": "Find a compact capture arrangement that can be built into the custom frame.",
+    "workCompleted": "Component research kept the microphone independent of the camera so the two could be placed for different needs. The audio comparison covered an SPH0645 I²S microphone and dual PDM microphones. Mentra’s published open-source glasses schematics provided a useful example of a small SPH0645 endpiece board and a controller that receives digital audio.",
+    "outcome": "An embedded I²S microphone is the first evaluation candidate. A second microphone can be assessed if one cannot capture both the wearer and nearby speakers clearly enough.",
+    "challenges": "The frame needs a clear acoustic opening. The digital microphone link to the off-head Pi still needs a realistic cable test.",
+    "nextSteps": [
+      {
+        "task": "Try a microphone near the front of the frame and compare wearer and conversation-partner speech.",
+        "owner": ""
+      },
+      {
+        "task": "Verify the tether with the camera and display active; consider a local USB audio bridge if needed.",
+        "owner": ""
+      }
+    ],
+    "decisions": [],
+    "resources": [
+      {
+        "title": "Mentra open-source endpiece microphone schematic",
+        "href": "https://github.com/Mentra-Community/OpenSourceSmartGlasses/blob/main/electronics_and_firmware/endpiece_mic_board_v0p2/microphone.kicad_sch"
+      }
+    ],
+    "evidence": []
+  },
 ];
 
 // ============================================================
@@ -168,11 +400,12 @@ const milestones = [
   { title: "Idea generation", status: "complete", target: "Sep 18–19, 2026", logId: 2 },
   { title: "Three-concept shortlist", status: "complete", target: "Sep 20, 2026", logId: 3 },
   { title: "Initial faculty feedback", status: "complete", target: "Sep 21, 2026", logId: 4 },
-  { title: "Provisional AR-glasses selection", status: "current", target: "Sep 24, 2026", logId: 5 },
-  { title: "AR feasibility and prior-art review", status: "upcoming", target: "Before next faculty meeting" },
-  { title: "Professor scope discussion", status: "upcoming", target: "Week of Sep 28, 2026" },
-  { title: "Requirements and architecture", status: "upcoming", target: "After concept review" },
-  { title: "Prototype and validation", status: "upcoming", target: "To be scheduled" },
+  { title: "Provisional AR-glasses selection", status: "complete", target: "Sep 24, 2026", logId: 5 },
+  { title: "Design problem proposal", status: "complete", target: "Sep 28, 2026", logId: 6 },
+  { title: "Preliminary design presentation", status: "complete", target: "October 2026", logId: 9 },
+  { title: "Detailed design and component evaluation", status: "current", target: "November 2026", logId: 12 },
+  { title: "Bench prototype", status: "upcoming", target: "After component evaluation" },
+  { title: "Integrated prototype and validation", status: "upcoming", target: "After bench testing" },
 ];
 
 const documents = [
@@ -215,8 +448,8 @@ function validateLogs(logs) {
     if (!log.objective?.trim()) warn("has no objective.");
     if (!log.workCompleted?.trim()) warn("has no work completed.");
     else if (log.workCompleted.trim().split(/\s+/).length < 25) warn("has a very brief work-completed summary; add specific engineering progress.");
-    if (!Array.isArray(log.membersPresent) || !log.membersPresent.length) warn("has no members present.");
-    if (!log.contributions || !Object.keys(log.contributions).length) warn("has no individual contributions listed.");
+    if (!log.retrospective && (!Array.isArray(log.membersPresent) || !log.membersPresent.length)) warn("has no members present.");
+    if (!log.retrospective && (!log.contributions || !Object.keys(log.contributions).length)) warn("has no individual contributions listed.");
     for (const member of log.membersPresent || []) {
       if (!knownMembers.has(member)) warn(`lists ${member} but that person is missing from teamMembers.`);
       if (!Array.isArray(log.contributions?.[member]) || !log.contributions[member].some(item => item?.trim())) warn(`has no individual contribution for ${member}.`);
@@ -236,7 +469,7 @@ function renderOverview() {
   document.getElementById("overview-team").textContent = teamMembers.map(member => member.name).join(" · ");
   document.getElementById("current-phase").textContent = project.currentPhase;
   document.getElementById("current-focus").textContent = project.currentFocus;
-  document.getElementById("last-updated").textContent = sortedLogs.length ? formatDate(sortedLogs[0].date) : "No entries yet";
+  document.getElementById("last-updated").textContent = sortedLogs.length ? `${sortedLogs[0].retrospective ? "Week of " : ""}${formatDate(sortedLogs[0].date)}` : "No entries yet";
   const next = milestones.find(item => item.status === "upcoming");
   document.getElementById("next-milestone").textContent = next ? `${next.title} · ${next.target}` : "To be scheduled";
   document.getElementById("entry-count").textContent = String(sortedLogs.length).padStart(2, "0");
@@ -294,16 +527,16 @@ function renderLog(log) {
   const contributors = Object.entries(log.contributions || {}).filter(([, items]) => items?.length).map(([member, items]) => renderContribution(member, items)).join("");
   const nextSteps = (log.nextSteps || []).map(step => typeof step === "string" ? { task: step, owner: "" } : step);
   return `<article class="log-card" id="log-${log.id}" aria-labelledby="log-title-${log.id}">
-    <div class="log-card-top"><span class="log-number">LOG #${String(log.id).padStart(2, "0")}</span><time datetime="${escapeHtml(log.date)}">${escapeHtml(formatDate(log.date))}</time></div>
+    <div class="log-card-top"><span class="log-number">LOG #${String(log.id).padStart(2, "0")}</span><time datetime="${escapeHtml(log.date)}">${log.retrospective ? "Week of " : ""}${escapeHtml(formatDate(log.date))}</time></div>
     <h3 id="log-title-${log.id}">${escapeHtml(log.title)}</h3>
     <div class="tag-row">${(log.tags || []).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
-    <div class="log-context"><span>${escapeHtml(log.type)}</span><span aria-hidden="true">·</span><span>${log.membersPresent.length} members present</span></div>
+    <div class="log-context"><span>${escapeHtml(log.type)}</span><span aria-hidden="true">·</span><span>${log.retrospective ? "Retrospective summary" : `${log.membersPresent.length} members present`}</span></div>
     <div class="log-body-grid"><div><h4>Objective</h4><p>${escapeHtml(log.objective)}</p></div><div><h4>Work completed</h4><p>${escapeHtml(log.workCompleted)}</p></div></div>
-    <div class="contribution-section"><div class="subsection-heading"><h4>Individual contributions</h4><span>${Object.keys(log.contributions || {}).length} contributors</span></div><div class="contribution-grid">${contributors}</div></div>
+    ${log.retrospective && !contributors ? "" : `<div class="contribution-section"><div class="subsection-heading"><h4>Individual contributions</h4><span>${Object.keys(log.contributions || {}).length} contributors</span></div><div class="contribution-grid">${contributors}</div></div>`}
     ${log.decisions?.length ? `<div class="decision-summary"><span class="decision-symbol" aria-hidden="true">◆</span><div><span class="field-label">ENGINEERING DECISION</span><p>${escapeHtml(log.decisions[0].decision)}</p></div></div>` : ""}
     <div class="result-grid"><div class="outcome-block"><h4>What changed</h4><p>${escapeHtml(log.outcome)}</p></div><div class="next-block"><h4>Next steps</h4><ul>${nextSteps.map(step => `<li><span class="step-arrow" aria-hidden="true">→</span><span>${escapeHtml(step.task)}${step.owner ? `<small>Owner: ${escapeHtml(step.owner)}</small>` : ""}</span></li>`).join("")}</ul></div></div>
     ${renderAttachments(log.resources)}
-    <details class="record-details"><summary>Full session record <span aria-hidden="true">+</span></summary><div class="detail-content"><div class="session-detail"><div><span class="field-label">SESSION TYPE</span><p>${escapeHtml(log.type)}</p></div><div><span class="field-label">MEMBERS PRESENT</span><p>${escapeHtml(log.membersPresent.join(", "))}</p></div></div>${log.decisions?.length ? `<section><h4>Decision reasoning</h4>${log.decisions.map(renderDecision).join("")}</section>` : ""}<section><h4>Challenges encountered</h4><p>${escapeHtml(log.challenges || "No challenges recorded.")}</p></section><section><h4>Evidence & artifacts</h4>${renderEvidence(log.evidence)}</section></div></details>
+    <details class="record-details"><summary>Full session record <span aria-hidden="true">+</span></summary><div class="detail-content"><div class="session-detail"><div><span class="field-label">SESSION TYPE</span><p>${escapeHtml(log.type)}</p></div><div><span class="field-label">MEMBERS PRESENT</span><p>${escapeHtml(log.membersPresent.join(", ") || "Not recorded")}</p></div></div>${log.decisions?.length ? `<section><h4>Decision reasoning</h4>${log.decisions.map(renderDecision).join("")}</section>` : ""}<section><h4>Challenges encountered</h4><p>${escapeHtml(log.challenges || "No challenges recorded.")}</p></section><section><h4>Evidence & artifacts</h4>${renderEvidence(log.evidence)}</section></div></details>
   </article>`;
 }
 
